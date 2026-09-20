@@ -12,6 +12,7 @@
   const docEl = document.documentElement;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(pointer: fine)");
+  const isMobileDevice = window.matchMedia("(max-width: 720px)").matches;
   let worksApi = null; // set by module 07; About's "What I Do" routes here
 
   /* ---- 01 · Content hydration ---- */
@@ -1101,7 +1102,15 @@
     }
 
     const mountRobot = () => {
-      if (loading || app || reduceMotion.matches || !canvas) return;
+
+  /* Mobile: do not download or render Spline 3D */
+  if (isMobileDevice) {
+    rbSection.classList.add("mobile-no-3d");
+    return;
+  }
+
+  if (loading || app || reduceMotion.matches || !canvas) return;
+    
       loading = true;
       import(RB.runtime)
         .then(({ Application }) => {
@@ -1216,7 +1225,15 @@
     }
 
     const mountRobot = () => {
-      if (loading || app || reduceMotion.matches || !canvas) return;
+
+  /* Mobile: do not download or render Spline 3D */
+  if (isMobileDevice) {
+    srSection.classList.add("mobile-no-3d");
+    return;
+  }
+
+  if (loading || app || reduceMotion.matches || !canvas) return;
+    
       loading = true;
       import(SR.runtime)
         .then(({ Application }) => {
