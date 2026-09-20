@@ -4014,3 +4014,488 @@ button {
   }
 
 }
+/* ============================================================
+   ASTROX — MOBILE PERFORMANCE OPTIMIZATION
+   KEEP BOTH 3D ROBOTS
+   iOS + Android
+   ============================================================ */
+
+@media (max-width: 720px) {
+
+  /* ============================================================
+     01 — BASIC MOBILE PERFORMANCE
+     ============================================================ */
+
+  html,
+  body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    overscroll-behavior-x: none;
+  }
+
+
+  /* ============================================================
+     02 — KEEP BOTH 3D ROBOTS
+     ============================================================ */
+
+  .rb-canvas,
+  .sr-canvas {
+    display: block !important;
+
+    max-width: 100%;
+
+    /*
+      Give canvas its own GPU/compositing layer.
+      Helps Android Chrome while keeping 3D active.
+    */
+    transform: translate3d(0, 0, 0);
+
+    -webkit-transform: translate3d(0, 0, 0);
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /*
+      Normal vertical page scrolling is still allowed.
+    */
+    touch-action: pan-y;
+  }
+
+
+  /* BIG ROBOT */
+
+  .rb-canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+
+  /* SMALL ROBOT */
+
+  .sr-canvas {
+    width: min(86vw, 520px) !important;
+    height: 42svh !important;
+  }
+
+
+  /* ============================================================
+     03 — REMOVE EXPENSIVE FILM GRAIN
+     ============================================================ */
+
+  /*
+    Film grain looks nice on desktop,
+    but it can continuously cost GPU resources on mobile.
+  */
+
+  .layer-grain {
+    display: none !important;
+  }
+
+
+  /* ============================================================
+     04 — REDUCE BACKDROP BLUR
+     ============================================================ */
+
+  /*
+    backdrop-filter is expensive on Android,
+    especially while scrolling + rendering WebGL/Spline.
+  */
+
+  .header-pill::before,
+  .notification,
+  .notif-card,
+  .rb-panel,
+  .wk-glass {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+
+  /* Keep similar glass appearance without live blur */
+
+  .header-pill::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(35, 23, 19, 0.94),
+        rgba(12, 8, 7, 0.96)
+      ) !important;
+  }
+
+
+  .notif-card {
+    background:
+      rgba(15, 9, 7, 0.94) !important;
+  }
+
+
+  .rb-panel {
+    background:
+      rgba(15, 8, 7, 0.92) !important;
+  }
+
+
+  .wk-glass {
+    background:
+      rgba(14, 10, 9, 0.94) !important;
+  }
+
+
+  /* ============================================================
+     05 — REDUCE HEAVY SHADOW CALCULATIONS
+     ============================================================ */
+
+  .notification,
+  .notif-card,
+  .rb-panel,
+  .wk-glass {
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  }
+
+
+  /*
+    Header keeps a small shadow.
+  */
+
+  .header-pill::before {
+    box-shadow:
+      0 10px 24px rgba(0, 0, 0, 0.32) !important;
+  }
+
+
+  /* ============================================================
+     06 — HERO EFFECT OPTIMIZATION
+     ============================================================ */
+
+  /*
+    Reduce expensive lighting layers on phones.
+    Design remains very similar.
+  */
+
+  .cursor-light {
+    opacity: 0.45;
+  }
+
+
+  .portrait-sweep {
+    opacity: 0.45;
+  }
+
+
+  /*
+    Eye effect remains available.
+    Just reduce rendering intensity.
+  */
+
+  .eye-flash::before {
+    opacity: 0.75;
+  }
+
+
+  /* ============================================================
+     07 — BIG ROBOT SECTION
+     ============================================================ */
+
+  .rb-pin {
+    height: 330vh;
+  }
+
+
+  .rb-space {
+    /*
+      Slightly lower perspective calculation on mobile.
+    */
+    perspective: 650px;
+  }
+
+
+  .rb-panel {
+    width: min(86vw, 400px);
+
+    padding: 18px;
+
+    border-radius: 16px;
+  }
+
+
+  .rb-panel-title {
+    font-size: clamp(19px, 5.6vw, 26px);
+  }
+
+
+  .rb-panel-text {
+    font-size: 12.5px;
+
+    margin-bottom: 1.2em;
+  }
+
+
+  .rb-tags li {
+    font-size: 9px;
+
+    padding: 5px 10px;
+  }
+
+
+  .rb-center {
+    left: 16px;
+    right: 16px;
+
+    bottom: 8svh;
+
+    width: auto;
+  }
+
+
+  .rb-title {
+    font-size: clamp(24px, 7.2vw, 34px);
+  }
+
+
+  .rb-sub {
+    font-size: 12px;
+  }
+
+
+  .rb-tag--r {
+    display: none;
+  }
+
+
+  .rb-tag {
+    font-size: 8.5px;
+
+    letter-spacing: 0.16em;
+  }
+
+
+  .rb-floor {
+    width: 58vw;
+
+    opacity: 0.55;
+  }
+
+
+  /*
+    Robot glow stays,
+    but slightly reduced to ease compositing.
+  */
+
+  .rb-glow {
+    opacity: 0.72;
+  }
+
+
+  .rb-grid {
+    opacity: 0.42;
+  }
+
+
+  /* ============================================================
+     08 — SMALL ROBOT SECTION
+     ============================================================ */
+
+  .sr {
+    padding:
+      10svh
+      18px
+      12svh;
+  }
+
+
+  .sr-inner {
+    grid-template-columns: 1fr;
+
+    gap: 2svh;
+  }
+
+
+  .sr-copy {
+    order: 1;
+
+    text-align: center;
+  }
+
+
+  .sr-stage {
+    order: 2;
+
+    min-height: 45svh;
+  }
+
+
+  .sr-title {
+    font-size: clamp(26px, 7.6vw, 36px);
+  }
+
+
+  .sr-sub {
+    margin-inline: auto;
+
+    font-size: 12.5px;
+  }
+
+
+  .sr-canvas {
+    /*
+      Robot stays fully 3D.
+      Canvas is simply smaller than desktop.
+    */
+
+    width: min(86vw, 480px) !important;
+
+    height: 42svh !important;
+
+    max-height: 480px;
+  }
+
+
+  .sr-glow {
+    opacity: 0.7;
+  }
+
+
+  /* ============================================================
+     09 — PROJECTS
+     ============================================================ */
+
+  .wk-media img {
+    width: 100%;
+
+    height: auto;
+
+    object-fit: cover;
+  }
+
+
+  /*
+    Removing blur animation from cards is a good mobile performance win.
+  */
+
+  .wk-scr {
+    filter: none !important;
+  }
+
+
+  /* ============================================================
+     10 — IMAGES
+     ============================================================ */
+
+  img {
+    max-width: 100%;
+
+    height: auto;
+  }
+
+
+  /*
+    Don't force hidden/lazy images to decode too early.
+  */
+
+  .ab-img,
+  .wk-media img,
+  .ab-view-media img {
+    transform: translateZ(0);
+
+    -webkit-transform: translateZ(0);
+  }
+
+
+  /* ============================================================
+     11 — MOBILE TAP OPTIMIZATION
+     ============================================================ */
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+  }
+
+
+  /*
+    Phones don't need hover animation.
+    Prevent "stuck hover" behaviour.
+  */
+
+  .cta:hover,
+  .theme-btn:hover,
+  .ft-top:hover,
+  .nav-link:hover {
+    transform: none;
+  }
+
+
+  /* ============================================================
+     12 — FOOTER
+     ============================================================ */
+
+  .ft {
+    overflow: hidden;
+  }
+
+
+  /* ============================================================
+     13 — REMOVE UNNECESSARY ANIMATION WORK
+     ============================================================ */
+
+  /*
+    Avoid animating properties that don't need animation on mobile.
+  */
+
+  .header-pill,
+  .notification,
+  .rb-panel,
+  .wk-glass {
+    transition-duration: 0.25s !important;
+  }
+
+}
+
+
+/* ============================================================
+   EXTRA OPTIMIZATION FOR VERY SMALL / LOW-END PHONES
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+  .rb-space {
+    perspective: 580px;
+  }
+
+
+  .rb-panel {
+    width: 88vw;
+
+    padding: 15px;
+  }
+
+
+  .sr-stage {
+    min-height: 40svh;
+  }
+
+
+  .sr-canvas {
+    width: 88vw !important;
+
+    height: 38svh !important;
+  }
+
+
+  .cursor-light {
+    opacity: 0.3;
+  }
+
+
+  .rb-glow,
+  .sr-glow {
+    opacity: 0.6;
+  }
+
+}

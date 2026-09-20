@@ -1122,13 +1122,17 @@
         .catch(() => { loading = false; kick(); });
     };
 
-    const near = new IntersectionObserver((entries) => {
-      if (entries.some((en) => en.isIntersecting)) {
-        mountRobot();
-        near.disconnect();
-      }
-    }, { rootMargin: "120% 0px" });
-    near.observe(rbSection);
+const isPhone = window.innerWidth <= 720;
+
+const near = new IntersectionObserver((entries) => {
+  if (entries.some((en) => en.isIntersecting)) {
+    mountRobot();
+    near.disconnect();
+  }
+}, {
+  rootMargin: isPhone ? "15% 0px" : "120% 0px",
+  threshold: 0.01
+});
 
     const vis = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
@@ -1237,13 +1241,16 @@
         .catch(() => { loading = false; kick(); });
     };
 
-    const nearSr = new IntersectionObserver((entries) => {
-      if (entries.some((en) => en.isIntersecting)) {
-        mountRobot();
-        nearSr.disconnect();
-      }
-    }, { rootMargin: "120% 0px" });
-    nearSr.observe(srSection);
+const nearSr = new IntersectionObserver((entries) => {
+  if (entries.some((en) => en.isIntersecting)) {
+    mountRobot();
+    nearSr.disconnect();
+  }
+}, {
+  rootMargin: isPhone ? "15% 0px" : "120% 0px",
+  threshold: 0.01
+});
+
 
     const visSr = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
