@@ -3408,3 +3408,609 @@ html.works-open .wk { display: block; }
   .ft-line { transform: none !important; }
   .ft-col { transform: none !important; }
 }
+
+/* ============================================================
+   ASTROX — iOS + Android Mobile Compatibility
+   Keep this block at the VERY END of styles.css
+   ============================================================ */
+
+/* ---------- Global mobile safety ---------- */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+
+  /* Prevent iPhone Safari from automatically resizing text */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+/* All images stay inside the mobile screen */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+/* Better tap behaviour on iOS / Android */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+
+/* ============================================================
+   MOBILE — iPhone + Android
+   ============================================================ */
+
+@media (max-width: 720px) {
+
+  /* ---------- Main viewport ---------- */
+
+  .hero {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+
+  /* ---------- Header ---------- */
+
+  .site-header {
+    top: max(
+      10px,
+      calc(env(safe-area-inset-top, 0px) + 8px)
+    );
+
+    width: calc(100% - 24px);
+    max-width: none;
+
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .header-pill {
+    width: 100%;
+    height: 54px;
+
+    padding: 0 7px 0 14px;
+
+    gap: 8px;
+
+    border-radius: 999px;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 19px;
+  }
+
+  .brand-dot {
+    width: 5px;
+    height: 5px;
+    margin-left: 4px;
+  }
+
+  /* Desktop navigation hidden on phones */
+  .site-nav {
+    display: none;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    gap: 6px;
+  }
+
+  .cta {
+    height: 38px;
+
+    padding: 0 13px;
+
+    font-size: 12.5px;
+
+    white-space: nowrap;
+  }
+
+  .cta-arrow {
+    width: 11px;
+    height: 11px;
+  }
+
+  .theme-btn {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+  }
+
+
+  /* ============================================================
+     HERO IMAGE
+     ============================================================ */
+
+  .portrait-parallax {
+    width: 100%;
+    height: 100%;
+  }
+
+  .portrait-frame {
+    top: max(
+      58px,
+      calc(env(safe-area-inset-top, 0px) + 48px)
+    );
+
+    left: 50%;
+
+    width: min(94vw, 500px);
+
+    height: 53vh;
+    height: 53svh;
+    height: 53dvh;
+
+    max-height: 560px;
+
+    transform: translateX(-50%);
+
+    -webkit-mask-image:
+      radial-gradient(
+        65% 66% at 50% 45%,
+        #000 46%,
+        transparent 88%
+      );
+
+    mask-image:
+      radial-gradient(
+        65% 66% at 50% 45%,
+        #000 46%,
+        transparent 88%
+      );
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center top;
+  }
+
+
+  /* ============================================================
+     HERO TEXT
+     ============================================================ */
+
+  .hero-copy {
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+
+    top: auto;
+
+    bottom: max(
+      145px,
+      calc(env(safe-area-inset-bottom, 0px) + 135px)
+    );
+
+    width: auto;
+
+    transform: none;
+
+    text-align: left;
+  }
+
+  .headline {
+    max-width: 100%;
+
+    margin: 0;
+
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 0.98;
+
+    letter-spacing: 0.07em;
+
+    overflow-wrap: break-word;
+  }
+
+  .role-block {
+    margin-top: 13px;
+  }
+
+  .role {
+    font-size: clamp(18px, 5.2vw, 23px);
+    line-height: 1.08;
+  }
+
+  .hero-meta {
+    margin-top: 12px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 6px 14px;
+
+    font-size: 10px;
+  }
+
+
+  /* ============================================================
+     HERO NOTIFICATION
+     ============================================================ */
+
+  .notification {
+    left: 50%;
+    right: auto;
+
+    bottom: max(
+      12px,
+      calc(env(safe-area-inset-bottom, 0px) + 8px)
+    );
+
+    width: calc(100% - 28px);
+    max-width: 420px;
+
+    transform: translateX(-50%);
+  }
+
+  .notif-card {
+    width: 100%;
+  }
+
+
+  /* ============================================================
+     SECTION SAFETY
+     ============================================================ */
+
+  main,
+  section,
+  footer {
+    max-width: 100%;
+  }
+
+  .s2-stage,
+  .p3,
+  .rb-stage-wrap,
+  .ed-pin,
+  .sr,
+  .ft {
+    width: 100%;
+    max-width: 100%;
+  }
+
+
+  /* ============================================================
+     ABOUT SECTION
+     ============================================================ */
+
+  .ab-comp {
+    width: 100%;
+  }
+
+  .ab-boxes {
+    max-width: 100%;
+  }
+
+  .ab-box {
+    max-width: 100%;
+  }
+
+  .ab-view {
+    max-width: 100%;
+  }
+
+  .ab-view-media img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+
+  /* ============================================================
+     PROJECT / WORKS
+     ============================================================ */
+
+  .wk {
+    width: 100vw;
+    width: 100dvw;
+
+    max-width: 100%;
+  }
+
+  .wk-scroll {
+    width: 100%;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .wk-glass {
+    max-width: calc(100vw - 32px);
+  }
+
+  .wk-media img {
+    width: 100%;
+    height: auto;
+
+    object-fit: cover;
+  }
+
+
+  /* ============================================================
+     3D ROBOTS
+     ============================================================ */
+
+  .rb-canvas,
+  .sr-canvas {
+    width: 100% !important;
+    height: 100% !important;
+
+    display: block;
+
+    touch-action: pan-y;
+  }
+
+  .rb-panel {
+    max-width: calc(100vw - 42px);
+  }
+
+
+  /* ============================================================
+     SERVICES / EDITORIAL
+     ============================================================ */
+
+  .ed {
+    width: 100%;
+  }
+
+  .ed-reel {
+    max-width: 100%;
+  }
+
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+
+  .ft {
+    padding-left:
+      max(18px, env(safe-area-inset-left, 0px));
+
+    padding-right:
+      max(18px, env(safe-area-inset-right, 0px));
+
+    padding-bottom:
+      max(
+        24px,
+        calc(env(safe-area-inset-bottom, 0px) + 18px)
+      );
+  }
+
+  .ft-headline {
+    max-width: 100%;
+  }
+
+  .ft-mail {
+    max-width: 100%;
+  }
+
+  .ft-mail-address {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   iPhone SE / older Android phones
+   ============================================================ */
+
+@media (max-width: 390px) {
+
+  .site-header {
+    width: calc(100% - 18px);
+  }
+
+  .header-pill {
+    height: 52px;
+
+    padding-left: 12px;
+  }
+
+  .brand-mark {
+    width: 30px;
+  }
+
+  .cta {
+    height: 36px;
+
+    padding: 0 10px;
+
+    font-size: 11.5px;
+  }
+
+  .theme-btn {
+    width: 36px;
+    height: 36px;
+
+    flex-basis: 36px;
+  }
+
+  .portrait-frame {
+    width: 100vw;
+
+    height: 50vh;
+    height: 50svh;
+    height: 50dvh;
+  }
+
+  .hero-copy {
+    left: 15px;
+    right: 15px;
+
+    bottom: max(
+      138px,
+      calc(env(safe-area-inset-bottom, 0px) + 130px)
+    );
+  }
+
+  .headline {
+    font-size: clamp(26px, 8.4vw, 32px);
+  }
+
+  .role {
+    font-size: 18px;
+  }
+
+  .notification {
+    width: calc(100% - 20px);
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE LANDSCAPE
+   ============================================================ */
+
+@media
+  (max-height: 520px)
+  and (orientation: landscape) {
+
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .site-header {
+    top: max(
+      6px,
+      env(safe-area-inset-top, 0px)
+    );
+  }
+
+  .portrait-frame {
+    top: -10vh;
+
+    height: 120vh;
+    height: 120dvh;
+
+    width: auto;
+  }
+
+  .hero-copy {
+    left: max(
+      22px,
+      env(safe-area-inset-left, 0px)
+    );
+
+    bottom: 28px;
+
+    width: 44%;
+  }
+
+  .headline {
+    font-size: clamp(24px, 5vw, 34px);
+  }
+
+  .role {
+    font-size: 17px;
+  }
+
+  .notification {
+    right: max(
+      12px,
+      env(safe-area-inset-right, 0px)
+    );
+
+    left: auto;
+
+    bottom: max(
+      10px,
+      env(safe-area-inset-bottom, 0px)
+    );
+
+    width: min(350px, 43vw);
+
+    transform: none;
+  }
+
+}
+
+
+/* ============================================================
+   iOS Safe Area
+   ============================================================ */
+
+@supports (padding: max(0px)) {
+
+  body {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+  /* Hover states can feel stuck on phones */
+  .cta:hover,
+  .theme-btn:hover,
+  .ft-top:hover {
+    transform: none;
+  }
+
+  button,
+  a {
+    cursor: default;
+  }
+
+}
+
+
+/* ============================================================
+   Reduced motion
+   Improves performance on low-end Android + accessibility
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+}
